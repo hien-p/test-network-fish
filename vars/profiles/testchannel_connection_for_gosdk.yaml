@@ -1,0 +1,256 @@
+---
+# ROOTPATH should be set to the absolute path of crypto material starting directory
+# for example: export ROOTPATH=/home/ubuntu/mywork/vars/keyfiles
+"name": "fishnetwork"
+"x-type": "hlfv-2.3.0"
+"version": "1.0.0"
+"client":
+  "organization": "supplier.fish.com"
+  "cryptoconfig":
+    "path": "${ROOTPATH}"
+  "connection":
+    "timeout":
+      "peer":
+        "endorser": "300"
+        "eventHub": "300"
+        "eventReg": "300"
+      "orderer": "300"
+  "credentialStore":
+    "path": "/tmp/state-store"
+    "cryptoStore":
+      "path": "/tmp/msp"
+  "BCCSP":
+    "security":
+      "enabled": "true"
+      "default":
+        "provider": "SW"
+      "hashAlgorithm": "SHA2"
+      "softVerify": "true"
+      "level": "256"
+
+"channels":
+  "testchannel":
+    "orderers":
+    - "orderer1.example.com"
+    - "orderer2.example.com"
+    "peers":
+      "peer1.supplier.fish.com":
+        "endorsingPeer": true
+        "chaincodeQuery": true
+        "eventSource": true
+      "peer2.dealer.fish.com":
+        "endorsingPeer": true
+        "chaincodeQuery": true
+        "eventSource": true
+
+"organizations":
+  "dealer.fish.com":
+    "mspid": "dealer-fish-com"
+    "cryptoPath": "peerOrganizations/dealer.fish.com/users/{username}@dealer.fish.com/msp"
+    "peers":
+    - "peer2.dealer.fish.com"
+    "certificateAuthorities":
+    - "ca1.dealer.fish.com"
+  "example.com":
+    "mspid": "example-com"
+    "cryptoPath": "ordererOrganizations/example.com/users/{username}@example.com/msp"
+    "orderers":
+    - "orderer1.example.com"
+    - "orderer2.example.com"
+    "certificateAuthorities":
+  "supplier.fish.com":
+    "mspid": "supplier-fish-com"
+    "cryptoPath": "peerOrganizations/supplier.fish.com/users/{username}@supplier.fish.com/msp"
+    "peers":
+    - "peer1.supplier.fish.com"
+    "certificateAuthorities":
+    - "ca1.supplier.fish.com"
+
+"orderers":
+  "orderer1.example.com":
+    "url": "grpcs://10.0.5.2:7006"
+    "grpcOptions":
+      "ssl-target-name-override": "orderer1.example.com"
+    "tlsCACerts":
+      "pem": |
+        -----BEGIN CERTIFICATE-----
+        MIICoTCCAkigAwIBAgIUOSRWb6xITf8osgquZkfU3xq6SlIwCgYIKoZIzj0EAwIw
+        ajELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRQwEgYDVQQKDAtleGFtcGxlLmNvbTEaMBgGA1UEAwwRdGxzY2Eu
+        ZXhhbXBsZS5jb20wHhcNMjMxMjI4MDkwNzA3WhcNMzMxMjI1MDkwNzA3WjBqMQsw
+        CQYDVQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1Jh
+        bGVpZ2gxFDASBgNVBAoMC2V4YW1wbGUuY29tMRowGAYDVQQDDBF0bHNjYS5leGFt
+        cGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABF6NWInCDmHj/D5E2+uJ
+        CgXa57mCx/6B0mo2dFZgR5P9Gep7NYj4iXSE6HaOaqYwB7lXwdTipUTI2zbPRRe0
+        knWjgcswgcgwHQYDVR0OBBYEFB35IkAtHCWo9ieKzKKrezIHTc29MB8GA1UdIwQY
+        MBaAFB35IkAtHCWo9ieKzKKrezIHTc29MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0P
+        AQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBGBgNVHREE
+        PzA9hwQKAAUCghF0bHNjYS5leGFtcGxlLmNvbYIRdGxzY2EtZXhhbXBsZS1jb22C
+        CWxvY2FsaG9zdIcEfwAAATAKBggqhkjOPQQDAgNHADBEAiBfOAErg3v8I0uPXbCQ
+        Ed0U1Z1H0uyctwxP5NEvTy3AMwIgZ/k+95hRFYgb9bfcYPTLJRBaU8CxXhIhwjSe
+        Myc4BFs=
+        -----END CERTIFICATE-----
+
+  "orderer2.example.com":
+    "url": "grpcs://10.0.5.2:7007"
+    "grpcOptions":
+      "ssl-target-name-override": "orderer2.example.com"
+    "tlsCACerts":
+      "pem": |
+        -----BEGIN CERTIFICATE-----
+        MIICoTCCAkigAwIBAgIUOSRWb6xITf8osgquZkfU3xq6SlIwCgYIKoZIzj0EAwIw
+        ajELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRQwEgYDVQQKDAtleGFtcGxlLmNvbTEaMBgGA1UEAwwRdGxzY2Eu
+        ZXhhbXBsZS5jb20wHhcNMjMxMjI4MDkwNzA3WhcNMzMxMjI1MDkwNzA3WjBqMQsw
+        CQYDVQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNVBAcMB1Jh
+        bGVpZ2gxFDASBgNVBAoMC2V4YW1wbGUuY29tMRowGAYDVQQDDBF0bHNjYS5leGFt
+        cGxlLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABF6NWInCDmHj/D5E2+uJ
+        CgXa57mCx/6B0mo2dFZgR5P9Gep7NYj4iXSE6HaOaqYwB7lXwdTipUTI2zbPRRe0
+        knWjgcswgcgwHQYDVR0OBBYEFB35IkAtHCWo9ieKzKKrezIHTc29MB8GA1UdIwQY
+        MBaAFB35IkAtHCWo9ieKzKKrezIHTc29MA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0P
+        AQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEFBQcDAjBGBgNVHREE
+        PzA9hwQKAAUCghF0bHNjYS5leGFtcGxlLmNvbYIRdGxzY2EtZXhhbXBsZS1jb22C
+        CWxvY2FsaG9zdIcEfwAAATAKBggqhkjOPQQDAgNHADBEAiBfOAErg3v8I0uPXbCQ
+        Ed0U1Z1H0uyctwxP5NEvTy3AMwIgZ/k+95hRFYgb9bfcYPTLJRBaU8CxXhIhwjSe
+        Myc4BFs=
+        -----END CERTIFICATE-----
+
+"peers":
+  "peer1.supplier.fish.com":
+    "url": "grpcs://10.0.5.2:7002"
+    "grpcOptions":
+      "ssl-target-name-override": "peer1.supplier.fish.com"
+    "tlsCACerts":
+      "pem": |
+        -----BEGIN CERTIFICATE-----
+        MIICyTCCAnCgAwIBAgIUHhbWe8S32eT6lb2tu7E4v9fqAowwCgYIKoZIzj0EAwIw
+        dzELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRowGAYDVQQKDBFzdXBwbGllci5maXNoLmNvbTEhMB8GA1UEAwwY
+        dGxzY2ExLnN1cHBsaWVyLmZpc2guY29tMB4XDTIzMTIyODA5MDcyNVoXDTMzMTIy
+        NTA5MDcyNVowdzELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5h
+        MRAwDgYDVQQHDAdSYWxlaWdoMRowGAYDVQQKDBFzdXBwbGllci5maXNoLmNvbTEh
+        MB8GA1UEAwwYdGxzY2ExLnN1cHBsaWVyLmZpc2guY29tMFkwEwYHKoZIzj0CAQYI
+        KoZIzj0DAQcDQgAE+dLvu08Ig/bNaRKKtOJ3Q50Z0TmWf+A5urdsjf9kv1VZqFCI
+        Taa6OstaMsFyzA7oHdOMY7J6NJCBzAEbW1xG26OB2TCB1jAdBgNVHQ4EFgQUsWfZ
+        YH4H9nrmutklBj2uNBaung8wHwYDVR0jBBgwFoAUsWfZYH4H9nrmutklBj2uNBau
+        ng8wDwYDVR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYI
+        KwYBBQUHAwEGCCsGAQUFBwMCMFQGA1UdEQRNMEuHBAoABQKCGHRsc2NhMS5zdXBw
+        bGllci5maXNoLmNvbYIYdGxzY2ExLXN1cHBsaWVyLWZpc2gtY29tgglsb2NhbGhv
+        c3SHBH8AAAEwCgYIKoZIzj0EAwIDRwAwRAIgWim+tGMi4l29Pkkt9C7+PiL3je5/
+        g/vO+jbTDqTPooECIEH/gJ7/g44zbgo5Ah2sPNpKMLeZF/vNSpe/OR0Et/ZW
+        -----END CERTIFICATE-----
+
+  "peer2.dealer.fish.com":
+    "url": "grpcs://10.0.5.2:7003"
+    "grpcOptions":
+      "ssl-target-name-override": "peer2.dealer.fish.com"
+    "tlsCACerts":
+      "pem": |
+        -----BEGIN CERTIFICATE-----
+        MIICvTCCAmSgAwIBAgIUEVQmU1Dr90WjPhuskzVdF+csRjswCgYIKoZIzj0EAwIw
+        czELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRgwFgYDVQQKDA9kZWFsZXIuZmlzaC5jb20xHzAdBgNVBAMMFnRs
+        c2NhMS5kZWFsZXIuZmlzaC5jb20wHhcNMjMxMjI4MDkwNjUzWhcNMzMxMjI1MDkw
+        NjUzWjBzMQswCQYDVQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAO
+        BgNVBAcMB1JhbGVpZ2gxGDAWBgNVBAoMD2RlYWxlci5maXNoLmNvbTEfMB0GA1UE
+        AwwWdGxzY2ExLmRlYWxlci5maXNoLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEH
+        A0IABBuEjFn1iyE0yhzcQZld+iidrPxMOZr5EkkuT7jflHi1z8Ak3hYJZeRlf+/i
+        w7OtI+m2732CeOLty3V9MlBye5ajgdUwgdIwHQYDVR0OBBYEFJ+Lh/lLWBhT7dtB
+        leOkS5bFC4H0MB8GA1UdIwQYMBaAFJ+Lh/lLWBhT7dtBleOkS5bFC4H0MA8GA1Ud
+        EwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMB
+        BggrBgEFBQcDAjBQBgNVHREESTBHhwQKAAUCghZ0bHNjYTEuZGVhbGVyLmZpc2gu
+        Y29tghZ0bHNjYTEtZGVhbGVyLWZpc2gtY29tgglsb2NhbGhvc3SHBH8AAAEwCgYI
+        KoZIzj0EAwIDRwAwRAIgSvznBDyg5XZwa7bPpjgjwNhkoS8C7e25kHOLCSksXY8C
+        IHaS3xSrWEUFVXXyzwzO6TIpjNXs/Q133XtZipFL1nNa
+        -----END CERTIFICATE-----
+
+"certificateAuthorities":
+  "ca1.supplier.fish.com":
+    "url": "https://10.0.5.2:7000"
+    "tlsCACerts":
+      "pem":
+      - |
+        -----BEGIN CERTIFICATE-----
+        MIICvzCCAmSgAwIBAgIUETXm5mLLXVtcJjowhpssKC+9YR4wCgYIKoZIzj0EAwIw
+        dDELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRowGAYDVQQKDBFzdXBwbGllci5maXNoLmNvbTEeMBwGA1UEAwwV
+        Y2ExLnN1cHBsaWVyLmZpc2guY29tMB4XDTIzMTIyODA5MDcyNFoXDTMzMTIyNTA5
+        MDcyNFowdDELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAw
+        DgYDVQQHDAdSYWxlaWdoMRowGAYDVQQKDBFzdXBwbGllci5maXNoLmNvbTEeMBwG
+        A1UEAwwVY2ExLnN1cHBsaWVyLmZpc2guY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D
+        AQcDQgAEDGbSrwSClwnrNTEq8lmW5eQibonqZMCDXAIf720tKjOW5Fs41bzDpv+v
+        Uk0TDeTPIme2ug452T8T1d7nVkfMgKOB0zCB0DAdBgNVHQ4EFgQUxHOdokgTkc6K
+        HjhyZaJWEzYRgBAwHwYDVR0jBBgwFoAUxHOdokgTkc6KHjhyZaJWEzYRgBAwDwYD
+        VR0TAQH/BAUwAwEB/zAOBgNVHQ8BAf8EBAMCAaYwHQYDVR0lBBYwFAYIKwYBBQUH
+        AwEGCCsGAQUFBwMCME4GA1UdEQRHMEWHBAoABQKCFWNhMS5zdXBwbGllci5maXNo
+        LmNvbYIVY2ExLXN1cHBsaWVyLWZpc2gtY29tgglsb2NhbGhvc3SHBH8AAAEwCgYI
+        KoZIzj0EAwIDSQAwRgIhAJzfxIU8dBHz6TD6vzZfSPMq9nDk6VXYkuV0hVHPRMcZ
+        AiEA7hjerEBb1OxNuxR+j8nyDzgT+FywAT948+vv7JLk6IU=
+        -----END CERTIFICATE-----
+
+    "httpOptions":
+      "verify": "false"
+    "caName": "ca1"
+    "registrar":
+      "enrollId": "admin"
+      "enrollSecret": "adminpw"
+  "ca1.dealer.fish.com":
+    "url": "https://10.0.5.2:7001"
+    "tlsCACerts":
+      "pem":
+      - |
+        -----BEGIN CERTIFICATE-----
+        MIICszCCAligAwIBAgIUXvuoWKsn48hMTBu+DbjueYeamiAwCgYIKoZIzj0EAwIw
+        cDELMAkGA1UEBhMCVVMxFzAVBgNVBAgMDk5vcnRoIENhcm9saW5hMRAwDgYDVQQH
+        DAdSYWxlaWdoMRgwFgYDVQQKDA9kZWFsZXIuZmlzaC5jb20xHDAaBgNVBAMME2Nh
+        MS5kZWFsZXIuZmlzaC5jb20wHhcNMjMxMjI4MDkwNjUzWhcNMzMxMjI1MDkwNjUz
+        WjBwMQswCQYDVQQGEwJVUzEXMBUGA1UECAwOTm9ydGggQ2Fyb2xpbmExEDAOBgNV
+        BAcMB1JhbGVpZ2gxGDAWBgNVBAoMD2RlYWxlci5maXNoLmNvbTEcMBoGA1UEAwwT
+        Y2ExLmRlYWxlci5maXNoLmNvbTBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABAlc
+        IDVn7npX3g653x6ZMbYMNcOMBR9gIxRAO3ejqtJWU6yxJJiggeLSWpI8bvOaM/Z6
+        O52HhIdZ9QH/fFN6PWejgc8wgcwwHQYDVR0OBBYEFPYBbegbcxgiDHfqoBal0E4R
+        rMogMB8GA1UdIwQYMBaAFPYBbegbcxgiDHfqoBal0E4RrMogMA8GA1UdEwEB/wQF
+        MAMBAf8wDgYDVR0PAQH/BAQDAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMBBggrBgEF
+        BQcDAjBKBgNVHREEQzBBhwQKAAUCghNjYTEuZGVhbGVyLmZpc2guY29tghNjYTEt
+        ZGVhbGVyLWZpc2gtY29tgglsb2NhbGhvc3SHBH8AAAEwCgYIKoZIzj0EAwIDSQAw
+        RgIhAJv5fxyFoyntpKMwFKpzmN6cwNsBrLIjAuBUOJRh+hdxAiEA+EWrhgsLSB2k
+        9X50Jbr0hgvQ8uuW2viOdHvNCRRWdN4=
+        -----END CERTIFICATE-----
+
+    "httpOptions":
+      "verify": "false"
+    "caName": "ca1"
+    "registrar":
+      "enrollId": "admin"
+      "enrollSecret": "adminpw"
+
+"entityMatchers":
+  "orderer":
+  - "mappedHost": "orderer1.example.com"
+    "pattern": "(\\w*)orderer1.example.com(\\w*)"
+    "sslTargetOverrideUrlSubstitutionExp": "orderer1.example.com"
+    "urlSubstitutionExp": "10.0.5.2:7006"
+  - "mappedHost": "orderer2.example.com"
+    "pattern": "(\\w*)orderer2.example.com(\\w*)"
+    "sslTargetOverrideUrlSubstitutionExp": "orderer2.example.com"
+    "urlSubstitutionExp": "10.0.5.2:7007"
+  
+  "peer":
+  - "mappedHost": "peer1.supplier.fish.com"
+    "pattern": "(\\w*)peer1.supplier.fish.com(\\w*)"
+    "sslTargetOverrideUrlSubstitutionExp": "peer1.supplier.fish.com"
+    "urlSubstitutionExp": "10.0.5.2:7002"
+  - "mappedHost": "peer2.dealer.fish.com"
+    "pattern": "(\\w*)peer2.dealer.fish.com(\\w*)"
+    "sslTargetOverrideUrlSubstitutionExp": "peer2.dealer.fish.com"
+    "urlSubstitutionExp": "10.0.5.2:7003"
+  
+  "certificateAuthorities":
+  - "mappedHost": "ca1.supplier.fish.com"
+    "pattern": "(\\w*)ca1.supplier.fish.com(\\w*)"
+    "sslTargetOverrideUrlSubstitutionExp": "ca1.supplier.fish.com"
+    "urlSubstitutionExp": "10.0.5.2:7000"
+  - "mappedHost": "ca1.dealer.fish.com"
+    "pattern": "(\\w*)ca1.dealer.fish.com(\\w*)"
+    "sslTargetOverrideUrlSubstitutionExp": "ca1.dealer.fish.com"
+    "urlSubstitutionExp": "10.0.5.2:7001"

@@ -5,48 +5,37 @@ OrdererOrgs:
     Specs:
       - Hostname: orderer1
         SANS:
-          - orderer1.example.com
+          - 10.0.5.2
       - Hostname: orderer2
         SANS:
-          - orderer2.example.com
-      - Hostname: orderer3
-        SANS:
-          - orderer3.example.com
+          - 10.0.5.2
 
 PeerOrgs:
-  - Name: org0.example.com
-    Domain: org0.example.com
+  - Name: dealer.fish.com
+    Domain: dealer.fish.com
     EnableNodeOUs: true
     CA:
       Hostname: ca1
-      CommonName: ca1.org0.example.com
+      CommonName: ca1.dealer.fish.com
+      Country: US
+      Province: North Carolina
+      Locality: Raleigh
+    Specs:
+      - Hostname: peer2
+        CommonName: peer2.dealer.fish.com
+        SANS:
+          - 10.0.5.2
+  - Name: supplier.fish.com
+    Domain: supplier.fish.com
+    EnableNodeOUs: true
+    CA:
+      Hostname: ca1
+      CommonName: ca1.supplier.fish.com
       Country: US
       Province: North Carolina
       Locality: Raleigh
     Specs:
       - Hostname: peer1
-        CommonName: peer1.org0.example.com
+        CommonName: peer1.supplier.fish.com
         SANS:
-          - peer1.org0.example.com
-      - Hostname: peer2
-        CommonName: peer2.org0.example.com
-        SANS:
-          - peer2.org0.example.com
-  - Name: org1.example.com
-    Domain: org1.example.com
-    EnableNodeOUs: true
-    CA:
-      Hostname: ca1
-      CommonName: ca1.org1.example.com
-      Country: US
-      Province: North Carolina
-      Locality: Raleigh
-    Specs:
-      - Hostname: peer1
-        CommonName: peer1.org1.example.com
-        SANS:
-          - peer1.org1.example.com
-      - Hostname: peer2
-        CommonName: peer2.org1.example.com
-        SANS:
-          - peer2.org1.example.com
+          - 10.0.5.2
