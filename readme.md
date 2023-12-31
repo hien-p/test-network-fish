@@ -1,29 +1,29 @@
-Cái repos này hiện đã được set up cả môi trường nodejs version latest.  
-Nên không cần phải remove docker mà bồ chỉ cần 
+Run network
 ```
 ./minifab up
 or 
 ./minifab down 
 ```
 
-
+Set your permission File
 ```
 sudo chown -R gitpod /workspace/test-network-fish
 ```
-
 
 # Mở Blockchain Explorer: 
 ```
 ./minifab explorerup 
 ```
 
-
 # Chay chaincode 
 ```
 ./minifab ccup -n fish -l node -v 2.0 -d false -p ''
 ```
+# Blockquery
 
-
+```
+./minifab blockquery
+```
 # Chạy app 
 ```
 ./minifab apprun

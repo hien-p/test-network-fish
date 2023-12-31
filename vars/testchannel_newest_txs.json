@@ -1,0 +1,19 @@
+{
+  "block_hash": "fmhsNrH9GNnqrCk7hvZxK8WjeMXai5wXGtvRqN2LwIY=",
+  "data_hash": "j9UJ+0TQigUAx1FyZQungzoQb4/RM0/IbG57wXZlctw=",
+  "number": "6",
+  "previous_hash": "3IIQV06sG0kVvyNfeE9I6MEF3Ek+sD9zmmWTCD1IWv8=",
+  "txs": [
+    {
+      "args": [
+        "init",
+        "a",
+        "200",
+        "b",
+        "300"
+      ],
+      "chaincode_id": "simple",
+      "tx_id": "65443648033ffa7ae5458dcddaab51bfebb7a9beb5023b3c9e1c33db19eb49c5"
+    }
+  ]
+}

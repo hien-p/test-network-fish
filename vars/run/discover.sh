@@ -11,9 +11,9 @@ discover endorsers --peerTLSCA $PEER_TLS_ROOTCERT_FILE \
   --userCert $ADMINCERT \
   --MSP supplier-fish-com --channel testchannel \
   --server 10.0.5.2:7002 \
-  --chaincode fish | jq '.[0]' | \
+  --chaincode simple | jq '.[0]' | \
   jq 'del(.. | .Identity?)' | jq 'del(.. | .LedgerHeight?)' \
-  > /vars/discover/testchannel_fish_endorsers.json
+  > /vars/discover/testchannel_simple_endorsers.json
 
 discover config --peerTLSCA $PEER_TLS_ROOTCERT_FILE \
   --userKey $ADMINPRIVATEKEY \

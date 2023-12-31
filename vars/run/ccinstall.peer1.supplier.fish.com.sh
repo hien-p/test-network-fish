@@ -6,13 +6,13 @@ export CORE_PEER_ADDRESS=10.0.5.2:7002
 export CORE_PEER_TLS_ROOTCERT_FILE=/vars/keyfiles/peerOrganizations/supplier.fish.com/peers/peer1.supplier.fish.com/tls/ca.crt
 export CORE_PEER_LOCALMSPID=supplier-fish-com
 export CORE_PEER_MSPCONFIGPATH=/vars/keyfiles/peerOrganizations/supplier.fish.com/users/Admin@supplier.fish.com/msp
-cd /go/src/github.com/chaincode/fish
+cd /go/src/github.com/chaincode/simple
 
 
-if [ ! -f "fish_node_4.0.tar.gz" ]; then
-  peer lifecycle chaincode package fish_node_4.0.tar.gz \
-    -p /go/src/github.com/chaincode/fish/node/ \
-    --lang node --label fish_4.0
+if [ ! -f "simple_node_1.0.tar.gz" ]; then
+  peer lifecycle chaincode package simple_node_1.0.tar.gz \
+    -p /go/src/github.com/chaincode/simple/node/ \
+    --lang node --label simple_1.0
 fi
 
-peer lifecycle chaincode install fish_node_4.0.tar.gz
+peer lifecycle chaincode install simple_node_1.0.tar.gz
